@@ -31,8 +31,7 @@ namespace ScheduleControl.src.repositories.implementations
         {
             await _context.Appointments.AddAsync(new AppointmentModel
             {
-                Start = appointmentDTO.Start,
-                End = appointmentDTO.End,
+                Time = appointmentDTO.Time,
                 Doctor = _context.Doctors.FirstOrDefault(d => d.Name == appointmentDTO.Doctor.Name),
                 Patient = _context.Patients.FirstOrDefault(p => p.Name == appointmentDTO.Doctor.Name)
             });
@@ -59,15 +58,6 @@ namespace ScheduleControl.src.repositories.implementations
                 .Include(d => d.Doctor)
                 .Include(p => p.Patient)
                 .FirstOrDefaultAsync(x => x.Id == id);
-        }
-
-        public async Task UpdateAppointmentAsync(UpdateAppointmentDTO appointmentDTO)
-        {
-            var oldAppointment = await GetAppointmentByIdAsync(appointmentDTO.Id);
-            oldAppointment.Start = appointmentDTO.Start;
-            oldAppointment.End = appointmentDTO.End;
-            oldAppointment.Doctor = _context.Doctors.FirstOrDefault(d => d.Name == appointmentDTO.Doctor.Name); 
-            await _context.SaveChangesAsync();
         }
 
         #endregion

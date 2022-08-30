@@ -44,7 +44,7 @@ namespace ScheduleControl.src.repositories.implementations
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<DoctorModel>> GetAllDoctors()
+        public async Task<List<DoctorModel>> GetAllDoctorsAsync()
         {
             return await _context.Doctors
                 .Include(x => x.MyAppointments)
@@ -54,6 +54,11 @@ namespace ScheduleControl.src.repositories.implementations
         public async Task<DoctorModel> GetDoctorByIdAsync(int id)
         {
             return await _context.Doctors.FirstOrDefaultAsync(d => d.Id == id);
+        }
+
+        public async Task<DoctorModel> GetDoctorByNameAsync(string name)
+        {
+            return await _context.Doctors.FirstOrDefaultAsync(d => d.Name == name);
         }
 
         public async Task<List<DoctorModel>> GetDoctorBySpecialtyAsync(string specialty)

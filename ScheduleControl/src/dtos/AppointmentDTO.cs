@@ -6,10 +6,7 @@ namespace ScheduleControl.src.dtos
     public class CreateAppointmentDTO
     {
         [Required]
-        public DateTime Start { get; set; }
-
-        [Required]
-        public DateTime End { get; set; }
+        public DateTime Time { get; set; }
 
         [Required]
         public CreateDoctorDTO Doctor { get; set; }
@@ -17,10 +14,9 @@ namespace ScheduleControl.src.dtos
         [Required]
         public CreatePatientDTO Patient { get; set; }
 
-        public CreateAppointmentDTO(DateTime start, DateTime end, CreateDoctorDTO doctor, CreatePatientDTO patient)
+        public CreateAppointmentDTO(DateTime time, CreateDoctorDTO doctor, CreatePatientDTO patient)
         {
-            Start = start;
-            End = end;
+            Time = time;
             Doctor = doctor;
             Patient = patient;
         }
@@ -32,18 +28,14 @@ namespace ScheduleControl.src.dtos
         public int Id { get; set; }
 
         [Required]
-        public DateTime Start { get; set; }
-
-        [Required]
-        public DateTime End { get; set; }
+        public DateTime Time { get; set; }
 
         public CreateDoctorDTO Doctor { get; set; }
 
-        public UpdateAppointmentDTO(int id, DateTime start, DateTime end, CreateDoctorDTO doctor)
+        public UpdateAppointmentDTO(int id, DateTime time, CreateDoctorDTO doctor)
         {
             Id = id;
-            Start = start;
-            End = end;
+            Time = time;
             Doctor = doctor;
         }
     }

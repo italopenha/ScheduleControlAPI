@@ -10,7 +10,8 @@ namespace ScheduleControl.src.repositories
         Task CreateDoctorAsync(CreateDoctorDTO doctordto);
         Task UpdateDoctorAsync(UpdateDoctorDTO doctordto);
         Task DeleteDoctorAsync(int id);
-        Task<List<DoctorModel>> GetAllDoctors();
+        Task<DoctorModel> GetDoctorByNameAsync(string name);
+        Task<List<DoctorModel>> GetAllDoctorsAsync();
         Task<DoctorModel> GetDoctorByIdAsync(int id);
         Task<List<DoctorModel>> GetDoctorBySpecialtyAsync(string specialty);
     }
