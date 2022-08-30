@@ -1,4 +1,5 @@
-﻿using ScheduleControl.src.models;
+﻿using ScheduleControl.src.dtos;
+using ScheduleControl.src.models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
