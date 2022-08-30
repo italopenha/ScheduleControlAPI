@@ -16,6 +16,7 @@ namespace ScheduleControl.src.models
         [Required]
         public DateTime Start { get; set; }
 
+        [Required]
         public DateTime End { get; set; }
 
         [ForeignKey("fk_doctor")]
