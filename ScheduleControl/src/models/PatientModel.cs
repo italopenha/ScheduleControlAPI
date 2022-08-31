@@ -5,6 +5,13 @@ using System.Text.Json.Serialization;
 
 namespace ScheduleControl.src.models
 {
+    /// <summary>
+    /// <para>Resume: Class responsible for creating patients in the database </para>
+    /// <para>Created by: Ítalo Penha </para>
+    /// <para>version: 1.0</para>
+    /// <para>Date: 30/08/2022</para>
+    /// </summary>
+
     [Table("tb_patients")]
     public class PatientModel
     {

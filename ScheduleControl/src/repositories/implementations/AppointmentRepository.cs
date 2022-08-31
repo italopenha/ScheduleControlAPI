@@ -8,6 +8,12 @@ using System.Threading.Tasks;
 
 namespace ScheduleControl.src.repositories.implementations
 {
+    /// <summary>
+    /// <para>Resume: Implementing methods and constructors for the appointment class </para>
+    /// <para>Created by: Ítalo Penha </para>
+    /// <para>Version: 1.0</para>
+    /// <para>Date: 30/08/2022</para>
+    /// </summary>
     public class AppointmentRepository : IAppointment
     {
         #region ATTRIBUTES
@@ -18,6 +24,10 @@ namespace ScheduleControl.src.repositories.implementations
 
         #region CONSTRUCTORS
 
+        /// <summary>
+        /// <para>Resume: Constructor of the class </para>
+        /// </summary>
+        /// <param name="context">ScheduleControlContext</param>
         public AppointmentRepository(ScheduleControlContext context)
         {
             _context = context;
@@ -27,6 +37,9 @@ namespace ScheduleControl.src.repositories.implementations
 
         #region METHODS
 
+        /// <summary>
+        /// <para>Resume: Asynchronous method to create a appointment </para>
+        /// </summary>
         public async Task CreateAppointmentAsync(CreateAppointmentDTO appointmentDTO)
         {
             await _context.Appointments.AddAsync(new AppointmentModel
@@ -38,12 +51,18 @@ namespace ScheduleControl.src.repositories.implementations
             await _context.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// <para>Resume: Asynchronous method to delete a appointment </para>
+        /// </summary>
         public async Task DeleteAppointmentAsync(int id)
         {
             _context.Appointments.Remove(await GetAppointmentByIdAsync(id));
             await _context.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// <para>Resume: Asynchronous method to get all appointments </para>
+        /// </summary>
         public async Task<List<AppointmentModel>> GetAllAppointmentsAsync()
         {
             return await _context.Appointments
@@ -52,6 +71,9 @@ namespace ScheduleControl.src.repositories.implementations
                 .ToListAsync();
         }
 
+        /// <summary>
+        /// <para>Resume: Asynchronous method to get a appointment by id </para>
+        /// </summary>
         public async Task<AppointmentModel> GetAppointmentByIdAsync(int id)
         {
             return await _context.Appointments

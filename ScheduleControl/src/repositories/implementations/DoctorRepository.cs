@@ -9,6 +9,12 @@ using System.Threading.Tasks;
 
 namespace ScheduleControl.src.repositories.implementations
 {
+    /// <summary>
+    /// <para>Resume: Implementing methods and constructors for the doctor class </para>
+    /// <para>Created by: Ítalo Penha </para>
+    /// <para>Version: 1.0</para>
+    /// <para>Date: 30/08/2022</para>
+    /// </summary>
     public class DoctorRepository : IDoctor
     {
         #region ATTRIBUTES
@@ -19,6 +25,10 @@ namespace ScheduleControl.src.repositories.implementations
 
         #region CONSTRUCTORS
 
+        /// <summary>
+        /// <para>Resume: Constructor of the class </para>
+        /// </summary>
+        /// <param name="context">ScheduleControlContext</param>
         public DoctorRepository(ScheduleControlContext context)
         {
             _context = context;
@@ -28,6 +38,9 @@ namespace ScheduleControl.src.repositories.implementations
 
         #region METHODS
 
+        /// <summary>
+        /// <para>Resume: Asynchronous method to create a doctor </para>
+        /// </summary>
         public async Task CreateDoctorAsync(CreateDoctorDTO doctordto)
         {
             await _context.Doctors.AddAsync(new DoctorModel
@@ -38,12 +51,18 @@ namespace ScheduleControl.src.repositories.implementations
             await _context.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// <para>Resume: Asynchronous method to delete a doctor </para>
+        /// </summary>
         public async Task DeleteDoctorAsync(int id)
         {
             _context.Doctors.Remove(await GetDoctorByIdAsync(id));
             await _context.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// <para>Resume: Asynchronous method to get all doctors </para>
+        /// </summary>
         public async Task<List<DoctorModel>> GetAllDoctorsAsync()
         {
             return await _context.Doctors
@@ -51,16 +70,25 @@ namespace ScheduleControl.src.repositories.implementations
                 .ToListAsync();
         }
 
+        /// <summary>
+        /// <para>Resume: Asynchronous method to get a doctor by id </para>
+        /// </summary>
         public async Task<DoctorModel> GetDoctorByIdAsync(int id)
         {
             return await _context.Doctors.FirstOrDefaultAsync(d => d.Id == id);
         }
 
+        /// <summary>
+        /// <para>Resume: Asynchronous method to get a doctor by name </para>
+        /// </summary>
         public async Task<DoctorModel> GetDoctorByNameAsync(string name)
         {
             return await _context.Doctors.FirstOrDefaultAsync(d => d.Name == name);
         }
 
+        /// <summary>
+        /// <para>Resume: Asynchronous method to get doctors by specialty </para>
+        /// </summary>
         public async Task<List<DoctorModel>> GetDoctorBySpecialtyAsync(string specialty)
         {
             return await _context.Doctors
@@ -68,6 +96,9 @@ namespace ScheduleControl.src.repositories.implementations
                 .ToListAsync();
         }
 
+        /// <summary>
+        /// <para>Resume: Asynchronous method to update a doctor </para>
+        /// </summary>
         public async Task UpdateDoctorAsync(UpdateDoctorDTO doctordto)
         {
             var oldDoctor = await GetDoctorByIdAsync(doctordto.Id);
