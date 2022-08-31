@@ -6,7 +6,7 @@ using ScheduleControl.src.repositories;
 using System;
 using System.Threading.Tasks;
 
-namespace AppointmentControl.src.controllers
+namespace ScheduleControl.src.controllers
 {
     /// <summary>
     /// <para>Resume: Controllers for doctor class </para>
@@ -157,7 +157,7 @@ namespace AppointmentControl.src.controllers
         /// <response code="204"> Doctor does not exist </response>
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DoctorModel))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [HttpGet]
+        [HttpGet("name/{nameDoctor}")]
         public async Task<ActionResult> GetDoctorByNameAsync([FromQuery] string nameDoctor)
         {
             var doctor = await _repository.GetDoctorByNameAsync(nameDoctor);

@@ -12,7 +12,9 @@ using ScheduleControl.src.repositories;
 using ScheduleControl.src.repositories.implementations;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace ScheduleControl
@@ -30,7 +32,7 @@ namespace ScheduleControl
         public void ConfigureServices(IServiceCollection services)
         {
             // Database configuration
-            if (Configuration["Enviroment:Start"] == "DEV")
+            if (Configuration["Enviroment:Start"] == "PROD")
             {
                 services.AddEntityFrameworkNpgsql()
                 .AddDbContext<ScheduleControlContext>(
@@ -49,23 +51,18 @@ namespace ScheduleControl
             services.AddScoped<IPatient, PatientRepository>();
             services.AddScoped<IAppointment, AppointmentRepository>();
 
-            // Create the configuration interface and bind the settings Json file
-            IConfigurationRoot config = new ConfigurationBuilder()
-                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-                .AddJsonFile("appsettings.json")
-                .Build();
-
-            // Add the DB Context passing the connection string from the configuration interface
-            services.AddDbContext<ScheduleControlContext>(opt => opt
-            .UseSqlServer(config.GetConnectionString("DefaultConnection")));
-
             // Controllers configuration
             services.AddCors();
             services.AddControllers();
 
+            // Swagger
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ScheduleControl", Version = "v1" });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
             });
         }
 

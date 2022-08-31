@@ -92,7 +92,7 @@ namespace ScheduleControl.src.controllers
         /// <response code="204"> Patient does not exist </response>
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(PatientModel))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [HttpGet]
+        [HttpGet("name/{namePatient}")]
         public async Task<ActionResult> GetPatientByNameAsync([FromQuery] string namePatient)
         {
             var patient = await _repository.GetPatientByNameAsync(namePatient);
