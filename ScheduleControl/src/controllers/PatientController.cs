@@ -93,7 +93,7 @@ namespace ScheduleControl.src.controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(PatientModel))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [HttpGet("name/{namePatient}")]
-        public async Task<ActionResult> GetPatientByNameAsync([FromQuery] string namePatient)
+        public async Task<ActionResult> GetPatientByNameAsync([FromRoute] string namePatient)
         {
             var patient = await _repository.GetPatientByNameAsync(namePatient);
 

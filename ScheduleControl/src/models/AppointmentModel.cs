@@ -21,7 +21,7 @@ namespace ScheduleControl.src.models
         public int Id { get; set; }
 
         [Required]
-        public DateTime Time { get; set; }
+        public string Time { get; set; }
 
         [ForeignKey("fk_doctor")]
         public DoctorModel Doctor { get; set; }

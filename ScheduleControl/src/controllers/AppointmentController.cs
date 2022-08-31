@@ -45,7 +45,7 @@ namespace ScheduleControl.src.controllers
         ///
         ///     POST /api/Appointment
         ///     {
-        ///         "time": "2022-08-20T19:45:35",
+        ///         "time": "10:00",
         ///         "doctor": {
         ///             "name": "Ricardo Nunes",
         ///             "specialty": "Ortopedista"

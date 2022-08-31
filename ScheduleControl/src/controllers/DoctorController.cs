@@ -149,7 +149,7 @@ namespace ScheduleControl.src.controllers
         }
 
         /// <summary>
-        /// Get doctor by name
+        /// Get a doctor by name
         /// </summary>
         /// <param name="nameDoctor">string</param>
         /// <returns>ActionResult</returns>
@@ -158,7 +158,7 @@ namespace ScheduleControl.src.controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DoctorModel))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [HttpGet("name/{nameDoctor}")]
-        public async Task<ActionResult> GetDoctorByNameAsync([FromQuery] string nameDoctor)
+        public async Task<ActionResult> GetDoctorByNameAsync([FromRoute] string nameDoctor)
         {
             var doctor = await _repository.GetDoctorByNameAsync(nameDoctor);
 

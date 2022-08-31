@@ -37,10 +37,10 @@ namespace TestEnvironment.tests
 
             // Since I register 2 appointments
             await _repository.CreateAppointmentAsync(
-                new CreateAppointmentDTO(DateTime.Now, new CreateDoctorDTO("Ricardo Nunes", "Ortopedista"), new CreatePatientDTO("Ítalo")));
+                new CreateAppointmentDTO("10:00", new CreateDoctorDTO("Ricardo Nunes", "Ortopedista"), new CreatePatientDTO("Ítalo")));
 
             await _repository.CreateAppointmentAsync(
-                new CreateAppointmentDTO(DateTime.Now, new CreateDoctorDTO("Maria Aparecida", "Ginecologista"), new CreatePatientDTO("Ana")));
+                new CreateAppointmentDTO("14:00", new CreateDoctorDTO("Maria Aparecida", "Ginecologista"), new CreatePatientDTO("Ana")));
 
             // When I request a list, I have 2 appointments
             Assert.AreEqual(2, _context.Appointments.Count());
@@ -58,7 +58,7 @@ namespace TestEnvironment.tests
 
             // Since I register 1 appointment
             await _repository.CreateAppointmentAsync(
-                new CreateAppointmentDTO(DateTime.Now, new CreateDoctorDTO("Ricardo Nunes", "Ortopedista"), new CreatePatientDTO("Ítalo")));
+                new CreateAppointmentDTO("10:00", new CreateDoctorDTO("Ricardo Nunes", "Ortopedista"), new CreatePatientDTO("Ítalo")));
 
             // I delete the appointment by id
             await _repository.DeleteAppointmentAsync(1);
@@ -79,13 +79,13 @@ namespace TestEnvironment.tests
 
             // Since I register 3 appointments
             await _repository.CreateAppointmentAsync(
-                new CreateAppointmentDTO(DateTime.Now, new CreateDoctorDTO("Ricardo Nunes", "Ortopedista"), new CreatePatientDTO("Ítalo")));
+                new CreateAppointmentDTO("10:00", new CreateDoctorDTO("Ricardo Nunes", "Ortopedista"), new CreatePatientDTO("Ítalo")));
 
             await _repository.CreateAppointmentAsync(
-                new CreateAppointmentDTO(DateTime.Now, new CreateDoctorDTO("Maria Aparecida", "Ginecologista"), new CreatePatientDTO("Ana")));
+                new CreateAppointmentDTO("14:00", new CreateDoctorDTO("Maria Aparecida", "Ginecologista"), new CreatePatientDTO("Ana")));
 
             await _repository.CreateAppointmentAsync(
-                new CreateAppointmentDTO(DateTime.Now, new CreateDoctorDTO("Luana Oliveira", "Dentista"), new CreatePatientDTO("Ronaldo")));
+                new CreateAppointmentDTO("15:00", new CreateDoctorDTO("Luana Oliveira", "Dentista"), new CreatePatientDTO("Ronaldo")));
 
             // When I request all appointments
             var list = await _repository.GetAllAppointmentsAsync();

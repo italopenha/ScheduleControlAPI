@@ -46,7 +46,7 @@ namespace ScheduleControl.src.repositories.implementations
             {
                 Time = appointmentDTO.Time,
                 Doctor = _context.Doctors.FirstOrDefault(d => d.Name == appointmentDTO.Doctor.Name),
-                Patient = _context.Patients.FirstOrDefault(p => p.Name == appointmentDTO.Doctor.Name)
+                Patient = _context.Patients.FirstOrDefault(p => p.Name == appointmentDTO.Patient.Name)
             });
             await _context.SaveChangesAsync();
         }
