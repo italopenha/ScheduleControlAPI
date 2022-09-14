@@ -2,6 +2,7 @@
 using ScheduleControl.src.data;
 using ScheduleControl.src.dtos;
 using ScheduleControl.src.models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -43,6 +44,9 @@ namespace ScheduleControl.src.repositories.implementations
         /// </summary>
         public async Task CreateDoctorAsync(CreateDoctorDTO doctordto)
         {
+            var doctor = await GetDoctorByNameAsync(doctordto.Name);
+            if (doctor != null) throw new Exception("Médico já existe!");
+
             await _context.Doctors.AddAsync(new DoctorModel
             {
                 Name = doctordto.Name,
